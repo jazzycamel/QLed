@@ -45,7 +45,7 @@ The available colours are:
 * Purple
 * Blue
 
-The LED is switched on and of by settings the boolean `value` property (either directly or via the setter function `setValue(bool)`).
+The LED is switched on and off by settings the boolean `value` property (either directly or via the setter function `setValue(bool)`).
 
 ## Dependencies
 * PyQt4/5
