@@ -3,6 +3,15 @@ An LED Widget for the PyQt4/5 Framework
 
 ![QLed Test Screenshot](https://raw.githubusercontent.com/jazzycamel/QLed/master/QLed_test_screenshot.png)
 
+## Installation
+### pip
+`$ pip install QLed`
+
+### setup.py
+Download or clone this repository and then run
+
+`$ python setup.py install`
+
 ## Usage
 ```python
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
