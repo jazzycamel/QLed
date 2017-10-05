@@ -1,5 +1,5 @@
 # QLed
-An LED Widget for the PyQt4 Framework
+An LED Widget for the PyQt4/5 Framework
 
 ![QLed Test Screenshot](https://raw.githubusercontent.com/jazzycamel/QLed/master/QLed_test_screenshot.png)
 
