@@ -1,7 +1,15 @@
 from colorsys import rgb_to_hls, hls_to_rgb
-from PyQt4.QtGui import QApplication, QWidget, QPainter, QGridLayout, QSizePolicy, QStyleOption
-from PyQt4.QtCore import pyqtSignal, Qt, QSize, QTimer, QByteArray, QRectF, pyqtProperty
-from PyQt4.QtSvg import QSvgRenderer
+import six
+
+if six.PY3:
+  from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QSizePolicy, QStyleOption
+  from PyQt5.QtGui import QPainter
+  from PyQt5.QtCore import pyqtSignal, Qt, QSize, QTimer, QByteArray, QRectF, pyqtProperty
+  from PyQt5.QtSvg import QSvgRenderer
+else:
+  from PyQt4.QtGui import QApplication, QWidget, QPainter, QGridLayout, QSizePolicy, QStyleOption
+  from PyQt4.QtCore import pyqtSignal, Qt, QSize, QTimer, QByteArray, QRectF, pyqtProperty
+  from PyQt4.QtSvg import QSvgRenderer
 
 class QLed(QWidget):
     Circle   = 1
@@ -344,7 +352,10 @@ class QLed(QWidget):
         dark_str="rgb(%d,%d,%d)" % (dark_r,dark_g,dark_b)
         light_str="rgb(%d,%d,%d)" % self.adjust(dark_r,dark_g,dark_b)
 
-        self.renderer.load(QByteArray(self.shapes[self.m_shape] % (dark_str,light_str)))
+        if six.PY3:
+            __xml=(self.shapes[self.m_shape]%(dark_str,light_str)).encode('utf8')
+            self.renderer.load(QByteArray(__xml))
+        else: self.renderer.load(QByteArray(self.shapes[self.m_shape] % (dark_str,light_str)))
         self.renderer.render(painter, bounds)
 
     def mousePressEvent(self, event):
