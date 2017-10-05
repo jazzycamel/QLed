@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='QLed',
-    version='1.2.1',
+    version='1.3.1',
     description="An LED Widget for the PyQt4/5 Framework",
     author="Rob Kent",
     author_email="rob@gulon.co.uk",
@@ -18,7 +18,8 @@ setup(name='QLed',
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",        
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
         "License :: OSI Approved :: MIT License",
     ]
 )
