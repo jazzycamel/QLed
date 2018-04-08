@@ -272,12 +272,14 @@ class QLed(QWidget):
              Blue   : (0x00, 0x03, 0x9a)}
 
     clicked=pyqtSignal()
+    pressed=pyqtSignal(bool)
 
     def __init__(self, parent=None, **kwargs):
         self.m_value=False
         self.m_onColour=QLed.Red
         self.m_offColour=QLed.Grey
         self.m_shape=QLed.Circle
+        self.m_clickable=False
 
         QWidget.__init__(self, parent, **kwargs)
 
@@ -307,6 +309,11 @@ class QLed(QWidget):
         self.m_shape=newShape
         self.update()
     shape=pyqtProperty(int, shape, setShape)
+	
+    def clickable(self): return self.m_clickable
+    def setClickable(self, newClickability):
+        self.m_clickable = newClickability
+    clickable=pyqtProperty(bool, clickable, setClickable)
 
     def sizeHint(self): 
         if self.m_shape==QLed.Triangle: return QSize(64,48)
@@ -365,7 +372,13 @@ class QLed(QWidget):
     def mouseReleaseEvent(self, event):
         if self._pressed:
             self._pressed=False
+            if self.m_clickable:
+                self.toggleValue()
+                self.pressed.emit(self.m_value)
+            else:
+                self.pressed.emit(True)
             self.clicked.emit()
+
         QWidget.mouseReleaseEvent(self, event)
 
     def toggleValue(self): 
